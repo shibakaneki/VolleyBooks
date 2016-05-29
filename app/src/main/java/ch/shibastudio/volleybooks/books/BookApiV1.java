@@ -75,7 +75,7 @@ public class BookApiV1 implements IBookApi{
 		// selected.
 		String url = QUERY_VOLUME_URI + "?q="
 				+keywords.replace(" ", "%20")
-				+"&fields=items(id,volumeInfo(title,imageLinks(smallThumbnail)))";
+				+"&fields=items(id,volumeInfo(title,imageLinks(smallThumbnail)))&maxResults=40";
 
 		JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, new JSONObject(), this.responseListener, this.errorListener);
 		request.setTag(REQ_TAG);
