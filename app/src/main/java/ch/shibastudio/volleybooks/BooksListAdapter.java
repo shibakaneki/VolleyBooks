@@ -31,6 +31,10 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
             super(itemView);
             this.title = (TextView)itemView.findViewById(R.id.title);
             this.thumb = (NetworkImageView)itemView.findViewById(R.id.thumb);
+
+            this.thumb.setDefaultImageResId(R.drawable.no_pic);
+            this.thumb.setErrorImageResId(R.drawable.no_pic);
+
             itemView.setOnClickListener(this);
         }
 
@@ -73,10 +77,8 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
         if(null != book){
             holder.itemView.setTag(position);
             holder.title.setText(book.getTitle());
-
-            if(null != book.getThumbnail() && !book.getThumbnail().isEmpty()){
-                holder.thumb.setImageUrl(book.getThumbnail(), VolleyRequestQueue.getInstance(this.context).getImageLoader());
-            }
+            Log.d("TEST", "[" +position +"] url: " +book.getThumbnail());
+            holder.thumb.setImageUrl(book.getThumbnail(), VolleyRequestQueue.getInstance(this.context).getImageLoader());
         }
     }
 
