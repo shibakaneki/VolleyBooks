@@ -92,6 +92,11 @@ public class BookApiV1 implements IBookApi{
 		JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, new JSONObject(), this.responseListener, this.errorListener);
 		request.setTag(REQ_TAG);
 		this.requestQueue.add(request);
+		try {
+			Thread.sleep(400);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

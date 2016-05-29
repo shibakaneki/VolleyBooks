@@ -3,4 +3,5 @@
     <string name="search_button">Search</string>
     <string name="dummy_text">Lorem ipsum dolor sit amet</string>
     <string name="title_details">Book Details</string>
+    <string name="no_description">No description available.</string>
 </resources>

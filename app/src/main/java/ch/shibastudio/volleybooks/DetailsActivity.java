@@ -34,6 +34,8 @@ public class DetailsActivity extends AppCompatActivity implements IBookControlle
         this.authors = (TextView)findViewById(R.id.authors);
         this.description = (TextView)findViewById(R.id.description);
         this.thumbnail = (NetworkImageView)findViewById(R.id.thumb);
+        this.thumbnail.setDefaultImageResId(R.drawable.no_pic);
+        this.thumbnail.setErrorImageResId(R.drawable.no_pic);
 
         this.controller = new BooksController(getApplicationContext());
         this.controller.addListener(this);
@@ -60,24 +62,22 @@ public class DetailsActivity extends AppCompatActivity implements IBookControlle
 
     @Override
     public void onBooksReceived(List<Book> books) {
-        if(!books.isEmpty()){
-            // In this activty, we query only one book.
-            Book book = books.get(0);
+        // In this activty, we query only one book.
+        Book book = books.get(0);
 
-            this.title.setText(book.getTitle());
+        this.title.setText(book.getTitle());
 
-            String auth = "";
-            for(int i=0; i<book.getAuthors().size(); i++){
-                String itAuthor = book.getAuthors().get(i);
-                if(0 < i){
-                    auth += "\n";
-                }
-                auth += itAuthor;
+        String auth = "";
+        for(int i=0; i<book.getAuthors().size(); i++){
+            String itAuthor = book.getAuthors().get(i);
+            if(0 < i){
+                auth += "\n";
             }
-            this.authors.setText(auth);
-
-            this.description.setText(book.getDescription());
-            this.thumbnail.setImageUrl(book.getThumbnail(), VolleyRequestQueue.getInstance(this).getImageLoader());
+            auth += itAuthor;
         }
+        this.authors.setText(auth);
+
+        this.description.setText(book.getDescription().isEmpty() ? getString(R.string.no_description) : book.getDescription());
+        this.thumbnail.setImageUrl(book.getThumbnail(), VolleyRequestQueue.getInstance(this).getImageLoader());
     }
 }

@@ -77,7 +77,6 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
         if(null != book){
             holder.itemView.setTag(position);
             holder.title.setText(book.getTitle());
-            Log.d("TEST", "[" +position +"] url: " +book.getThumbnail());
             holder.thumb.setImageUrl(book.getThumbnail(), VolleyRequestQueue.getInstance(this.context).getImageLoader());
         }
     }
