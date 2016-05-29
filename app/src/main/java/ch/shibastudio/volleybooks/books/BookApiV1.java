@@ -92,6 +92,10 @@ public class BookApiV1 implements IBookApi{
 		JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, new JSONObject(), this.responseListener, this.errorListener);
 		request.setTag(REQ_TAG);
 		this.requestQueue.add(request);
+
+		// HACK: Should take more time to find why this ugly hack is required. Going too fast here
+		// results in not receiving any answer from Volley, so I did this (what I call) "ugly" sleep.
+		// It will be better to do something asynchronous and do a proper scheduling of requests.
 		try {
 			Thread.sleep(400);
 		} catch (InterruptedException e) {
@@ -134,6 +138,8 @@ public class BookApiV1 implements IBookApi{
 	 * @return a Book.
      */
 	private Book generateBook(JSONObject book) throws JSONException{
+		// Note to myself: I should use GSON to generate object from JSON here, but for a small demo
+		// app like this I decided to keep it simple and not display all the fields.
 		String id = book.getString(TAG_ID);
 		String thumb = "";
 		List<String> authors = new ArrayList<>();
