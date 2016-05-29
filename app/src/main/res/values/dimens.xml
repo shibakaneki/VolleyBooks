@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="margin">16dp</dimen>
+    <dimen name="margin_half">8dp</dimen>
+    <dimen name="padding">8dp</dimen>
+    <dimen name="title_size">16sp</dimen>
+    <dimen name="text_size">12sp</dimen>
+</resources>

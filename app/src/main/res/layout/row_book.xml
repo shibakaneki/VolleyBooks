@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_half"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/thumb"
+            android:layout_width="80dp"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/padding"
+            android:paddingRight="@dimen/padding"
+            android:layout_toRightOf="@id/thumb"
+            android:layout_alignBottom="@id/thumb"
+            android:layout_alignTop="@id/thumb"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/title_size"
+            android:text="@string/dummy_text"
+            android:ellipsize="end"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
