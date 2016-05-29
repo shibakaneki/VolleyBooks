@@ -1,6 +1,5 @@
 package ch.shibastudio.volleybooks;
 
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,14 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import ch.shibastudio.volleybooks.books.beans.Book;
 
 public class MainActivity extends AppCompatActivity implements IBookControllerListener {
-	private TextView messageView;
 	private Button searchButton;
 	private EditText searchText;
 	private RelativeLayout waitContainer;
@@ -30,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements IBookControllerLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		this.messageView = (TextView)findViewById(R.id.message);
 		this.searchText = (EditText)findViewById(R.id.searchText);
 		this.searchButton = (Button)findViewById(R.id.searchButton);
 		this.waitContainer = (RelativeLayout)findViewById(R.id.waitContainer);
@@ -47,8 +44,6 @@ public class MainActivity extends AppCompatActivity implements IBookControllerLi
 		this.searchButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				messageView.setVisibility(View.GONE);
-				messageView.setText("");
 				String keywords = searchText.getText().toString();
 				if(!keywords.isEmpty()){
 					setWaitVisibility(true);
@@ -68,15 +63,12 @@ public class MainActivity extends AppCompatActivity implements IBookControllerLi
 	@Override
 	public void onError(String error) {
 		setWaitVisibility(false);
-		this.messageView.setVisibility(View.VISIBLE);
-		this.messageView.setText(error);
-		this.messageView.setTextColor(Color.RED);
+		Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onBooksReceived(List<Book> books) {
 		setWaitVisibility(false);
-		this.messageView.setTextColor(Color.BLACK);
 		this.adapter.setCurrentBooks(books);
 	}
 

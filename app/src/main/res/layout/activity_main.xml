@@ -29,18 +29,11 @@
         android:maxLines="1"
         android:lines="1"/>
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/searchText"
-        android:layout_marginTop="@dimen/margin"
-        android:text="Hello World!"/>
-
     <android.support.v7.widget.RecyclerView android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/searchText"
+        android:layout_marginTop="@dimen/margin"
         android:layout_alignParentBottom="true"
         android:scrollbars="vertical"/>
 
